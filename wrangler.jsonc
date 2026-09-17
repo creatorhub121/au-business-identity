@@ -1,0 +1,7 @@
+{
+ "$schema": "node_modules/wrangler/config-schema.json",
+ "name": "au-business-identity",
+ "main": "src/index.js",
+ "compatibility_date": "2026-08-25",
+ "upload_source_maps": true
+}

@@ -1,0 +1,21 @@
+{
+  "name": "au-business-identity",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.0.0",
+    "vitest": "^4.1.0",
+    "wrangler": "^4.133.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "agents": "^0.22.0",
+    "zod": "^4.5.4"
+  }
+}
