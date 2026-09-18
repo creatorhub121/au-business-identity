@@ -85,10 +85,10 @@ ACN:
 Public remote MCP endpoint: 
 
 ```text
-https://au-business-identity.agentutilities.workers.dev/mcp
+https://au-business-identity.auagentutilities.workers.dev/mcp
 ``` 
-
-```markdown 
+No API key is required for the current validation tools.
+ 
 ## Quick MCP examples
 
 Validate an ABN: 
