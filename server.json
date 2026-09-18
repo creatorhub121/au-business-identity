@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.creatorhub121/au-business-identity",
+  "title": "AU Business Identity",
+  "description": "Validate Australian ABNs and ACNs by format and checksum over a public remote MCP endpoint.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/creatorhub121/au-business-identity",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://au-business-identity.auagentutilities.workers.dev/mcp"
+    }
+  ]
+}
