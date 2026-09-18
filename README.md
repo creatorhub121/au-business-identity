@@ -145,7 +145,7 @@ Run tests:
 
 ```text
 </> Bash 
-npm test -- --run
+npm vitest run
 ```
 
 Run locally: 
