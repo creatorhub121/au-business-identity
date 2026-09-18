@@ -82,7 +82,38 @@ ACN:
 
 ## MCP Endpoint 
 
-A public remote MCP endpoint will be added after deployment 
+Public remote MCP endpoint: 
+
+```text
+https://au-business-identity.agentutilities.workers.dev/mcp
+``` 
+
+```markdown 
+## Quick MCP examples
+
+Validate an ABN: 
+
+```json
+{
+  "name": "validate_abn",
+  "arguments": {
+    "abn": "51 824 753 556"
+  }
+}
+```
+
+Validate an ACN: 
+
+```json
+{
+  "name": "validate_acn",
+  "arguments": {
+    "acn": "004 085 616"
+  }
+}
+```
+
+ 
 
 ## Planned tools 
 
