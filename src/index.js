@@ -97,7 +97,7 @@ function jsonResponse(data, status = 200) {
 
 export default {
   async fetch(request, env, ctx) {
-    const url = new URL(request.url);
+    const url = new URL(request.url); 
 
     if (url.pathname === "/mcp") {
       if (request.method === "POST") {
