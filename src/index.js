@@ -240,7 +240,7 @@ export default {
         name: "AU Business Identity",
         version: "0.2.0",
         description:
-          "Deterministic Australian business identifier validation for AI agents and applications.",
+          "Australian business identifier validation and live ABN registry verification for AI agents and applications.",
         mcp: "/mcp",
         mcp_tools: ["validate_abn", "verify_abn", "validate_acn"],
         http_endpoints: {
