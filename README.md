@@ -1,27 +1,26 @@
 # AU Business Identity
 
-Deterministic Australian business identifier validation for AI agents and applications.
+Australian business identifier validation and live ABN registry verification for AI agents and applications.
 
 Part of **AU Agent Utilities**.
 
 ## What it does
 
-AU Business Identity currently validates Australian:
+AU Business Identity provides three MCP tools for working with Australian business identifiers:
 
-- ABNs — Australian Business Numbers
-- ACNs — Australian Company Numbers
+- Validate ABNs using official format and checksum rules
+- Verify ABNs live against the Australian Business Register
+- Validate ACNs using official format and checksum rules
 
-Validation is performed locally using the official checksum rules.
+Use `validate_abn` when you only need deterministic local validation.
 
-It does **not yet confirm whether an ABN or ACN is registered, active or associated with a particular entity**.
-
-Registry verification and Australian business lookup tools are planned next.
+Use `verify_abn` when you need to know whether an ABN can be found in the Australian Business Register and retrieve available registry information.
 
 ## MCP tools
 
 ### `validate_abn`
 
-Validates the format and checksum of an Australian Business Number.
+Validates the format and checksum of an Australian Business Number without performing a registry lookup.
 
 Example:
 
@@ -30,69 +29,87 @@ Example:
 ```
 
 Returns structured information including:
-- Normalised ABN 
+
+- Normalised ABN
 - Formatted ABN
-- Format validity 
-- Checksum validity 
+- Format validity
+- Checksum validity
 - Overall validation result
+
+### `verify_abn`
+
+Verifies an Australian Business Number against the Australian Business Register.
+
+Example:
+
+```text
+51 824 753 556
+```
+
+Returns structured information that may include:
+
+- Normalised and formatted ABN
+- Checksum validity
+- Registry match status
+- Entity name
+- Entity type
+- ABN status
+- GST registration status
+- State and postcode
+- Business names when available
+- Registry update information
+
+A checksum-valid ABN and a registry-verified ABN are not treated as the same thing.
 
 ### `validate_acn`
 
-Validates the format and checksum of an Australian Company Number
+Validates the format and checksum of an Australian Company Number.
 
-Example: 
+Example:
 
 ```text
 004 085 616
 ```
 
-Returns structured information including: 
-- Normalised ACN 
-- Formatted ACN 
-- Format validity 
-- Checksum validity 
-- Overall validation result 
+Returns structured information including:
 
-## Example agent requests 
+- Normalised ACN
+- Formatted ACN
+- Format validity
+- Checksum validity
+- Overall validation result
+
+## Example agent requests
 
 ```text
 Is 51 824 753 556 a valid ABN?
 ```
 
-```text 
-Validate ACN 004 085 616
+```text
+Verify ABN 51 824 753 556 against the Australian Business Register.
 ```
 
 ```text
-Check whether this Australian business identifier passes its checksum
+Is this ABN active and registered for GST?
 ```
-
-## HTTP endpoints 
-
-ABN: 
-
-```text 
-/validate-abn?abn=51824753556
-```
-
-ACN:
 
 ```text
-/validate-acn?acn=004085616
+Validate ACN 004 085 616.
 ```
 
-## MCP Endpoint 
+## MCP endpoint
 
-Public remote MCP endpoint: 
+Public remote MCP endpoint:
 
 ```text
 https://au-business-identity.auagentutilities.workers.dev/mcp
-``` 
-No API key is required for the current validation tools.
- 
+```
+
+No API key is currently required for the public beta tools.
+
 ## Quick MCP examples
 
-Validate an ABN: 
+Validate an ABN:
 
 ```json
 {
@@ -103,7 +120,18 @@ Validate an ABN:
 }
 ```
 
-Validate an ACN: 
+Verify an ABN against the Australian Business Register:
+
+```json
+{
+  "name": "verify_abn",
+  "arguments": {
+    "abn": "51 824 753 556"
+  }
+}
+```
+
+Validate an ACN:
 
 ```json
 {
@@ -114,47 +142,53 @@ Validate an ACN:
 }
 ```
 
- 
+## HTTP endpoints
 
-## Planned tools 
-
-Future versions are intended to add: 
-- Australian business lookup 
-- ABN registry status 
-- GST registration status 
-- business-name search
-- ABN / business-name matching 
-- Australian entity verification 
-
-## Privacy 
-
-Anonymous MCP usage logging records protocol events and tool names only. 
-
-Tool arguments such as ABNs or ACNs are not intentionally logged by the application. 
-
-## Development 
-
-Install dependencies: 
-
-```text 
-</> Bash 
-npm install
-``` 
-
-Run tests: 
+Checksum validation is also available over HTTP:
 
 ```text
-</> Bash 
-npm vitest run
+/validate-abn?abn=51824753556
 ```
 
-Run locally: 
-```text 
-</> Bash
-npm run dev
+```text
+/validate-acn?acn=004085616
 ```
 
-## Licence 
+Live ABR verification is currently exposed through the MCP tool `verify_abn`.
 
-MIT
+## Planned capabilities
 
+Potential future additions include:
+
+- Business-name search
+- ABN and business-name matching
+- Expanded Australian entity verification
+- Additional business identity checks based on real usage demand
+
+## Privacy
+
+The service records operational usage metadata such as tool name, success status and registry outcome to help measure reliability and adoption.
+
+ABN and ACN input values are not intentionally stored in application usage logs.
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run tests:
+
+```bash
+npx vitest run
+```
+
+## Source
+
+GitHub:
+
+```text
+https://github.com/creatorhub121/au-business-identity
+```
